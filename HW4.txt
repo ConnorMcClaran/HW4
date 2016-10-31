@@ -1,0 +1,14 @@
+Connor McClaran, Homework 4 questions that don't require code
+3.2.5)
+I think it would be most beneficial if the keys were inserted in decreasing order into the tree. Placing the keys in
+decreasing order would mean the keys that need to be accessed most would be nearest to the root. Therefore, when doing
+any operations on the keys the amount of keys the program would have to process to get to where it is going would be as
+small as possible. This would improve the speed and efficiency of the program.
+
+3.2.15)
+A) E,Q,J,M
+B)E,Q,J,M
+C)E,Q,T
+D)E,Q,J
+E)E,D,E,Q,T
+F)D,E,Q,T
