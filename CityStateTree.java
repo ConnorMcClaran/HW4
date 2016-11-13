@@ -1,10 +1,12 @@
 
 
 
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
+import java.security.Key;
 
 
 /**
@@ -13,9 +15,9 @@ import java.io.FileReader;
  */
 public class CityStateTree {
     private Node root;
-    String fileName = "dma.txt";
+
     private class Node {
-        private Key key;
+        private  Key key;
         private Value val;
         private Node left, right;
         int height = 0;
@@ -149,35 +151,56 @@ public class CityStateTree {
         }
         return successsor;
     }
+    public void preorder(Node root) {
+        if(root !=  null) {
+
+            System.out.printf("%d ",root.val);
+            preorder(root.left);
+            preorder(root.right);
+        }
+    }
+
+
     public class Balance{
 
     }
 
 
-    public  FiletoTree(String fileName) {
+    public void FiletoTree(String fileName) {
+        long x;
+        long y;
+        long totaltime;
 
-        String fileName = fileName";
+
         String line = null;
-        try  {
-            BufferedReader in = new BufferedReader(new FileReader(fileName);
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(fileName));
+            x = System.nanoTime();
 
-            while((line = BufferedReader.readLine()) != null){
 
-                String Areacode = line.substring(0,3);
+            while ((line = BufferedReader.readLine()) != null) {
+
+                String Areacode = line.substring(0, 3);
                 String City = line.substring(4);
-                insert(Areacode,City);
+                insert(Areacode, City);
 
 
             }
-        }
-            catch(FileNotFoundException ex){
-                System.out.println(
-                "Error reading file '"
-                        + fileName + "'");
+            y = System.nanoTime();
+        } catch (FileNotFoundException ex) {
+            System.out.println(
+                    "Error reading file '"
+                            + fileName + "'");
 
         }
-        public static void main(String[] args){
-            FiletoTree("dma.txt");
+        totaltime = x + y;
+
+
+    }
+    public static void main(String[] args){
+        FiletoTree("dma.txt");
+
+
 
 
         }
@@ -193,6 +216,6 @@ public class CityStateTree {
 
 
 
-        }
+
 
 
