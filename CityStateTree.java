@@ -1,35 +1,48 @@
 
 
 
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
+
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.security.Key;
+
 
 
 /**
  * Created by mcclarci on 10/29/2016.
  * Connor McClaran Homework #4
  */
+class Node {
+    int key;
+    String val;
+    Node left, right;
+    int height = 0;
+
+    public Node(){
+        left = null;
+        right = null;
+
+    }
+
+
+    public Node(int key, String val) {
+        left = null;
+        right = null;
+        this.key = key;
+        this.val = val;
+    }
+}
+
 public class CityStateTree {
     private Node root;
 
-    private class Node {
-        private  Key key;
-        private Value val;
-        private Node left, right;
-        int height = 0;
-
-
-        public Node(Key key, Value val) {
-            this.key = key;
-            this.val = val;
-        }
+    public CityStateTree()
+    {
+        root = null;
     }
 
-    public boolean search(Key key) {
+    public boolean search(int key) {
         Node current = root;
         while (current != null) {
             if (current.key == key) {
@@ -43,7 +56,7 @@ public class CityStateTree {
         return false;
     }
 
-    public void insert(Key key, Value val) {
+    public void insert(int key, String val) {
         Node newNode = new Node(key, val);
         if (root == null) {
             root = newNode;
@@ -70,11 +83,11 @@ public class CityStateTree {
         }
     }
 
-    public boolean delete(Key key) {
+    public boolean delete(int key) {
         Node current = root;
         Node parent = root;
         boolean isLeftChild = false;
-        /** iterate through list to find item */
+        /** iterate through tree to find item */
         while (current.key != key) {
             parent = current;
             if (current.key > key) {
@@ -166,10 +179,13 @@ public class CityStateTree {
     }
 
 
-    public void FiletoTree(String fileName) {
+
+    public static void main(String[] args){
         long x;
         long y;
         long totaltime;
+        String fileName = "dma.txt";
+
 
 
         String line = null;
@@ -180,7 +196,7 @@ public class CityStateTree {
 
             while ((line = BufferedReader.readLine()) != null) {
 
-                String Areacode = line.substring(0, 3);
+                int Areacode = line.substring(0, 3);
                 String City = line.substring(4);
                 insert(Areacode, City);
 
@@ -194,11 +210,6 @@ public class CityStateTree {
 
         }
         totaltime = x + y;
-
-
-    }
-    public static void main(String[] args){
-        FiletoTree("dma.txt");
 
 
 
